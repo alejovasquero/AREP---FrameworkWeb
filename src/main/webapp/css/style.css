@@ -1,0 +1,9 @@
+body {
+    background-image:url('../math/math.jpg');
+    background-repeat:repeat-y;
+    background-color: red;
+}
+
+textarea {
+    align: center;
+}
