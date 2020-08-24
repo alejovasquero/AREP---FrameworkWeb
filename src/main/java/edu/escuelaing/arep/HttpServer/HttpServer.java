@@ -2,12 +2,11 @@ package edu.escuelaing.arep.HttpServer;
 
 import edu.escuelaing.arep.WebFram.WebFramework;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashMap;
+
 import static edu.escuelaing.arep.WebFram.WebFramework.*;
 
 public class HttpServer {
@@ -37,24 +36,51 @@ public class HttpServer {
     }
 
     public static void makeResponse(Socket clientSocket) throws IOException {
-        PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-        String inputLine, outputLine;
+        String inputLine;
+        String[] argu = null;
+        HashMap<String, String[]> a = new HashMap<String, String[]>();
         while ((inputLine = in.readLine()) != null) {
             System.out.println("Mensaje: " + inputLine);
+            argu = inputLine.split("\\s+");
+            a.put(argu[0], argu);
             if (!in.ready()) {
                 break;
             }
         }
-        outputLine = "HTTP/1.1 200 OK\r\n"
-                + "Content-Type: text/html\r\n"
-                + "\r\n";
-        outputLine += WebFramework.getResource("/data.html", null);
-        out.println(outputLine);
-        out.close();
+        findResponse(clientSocket, a);
         in.close();
         clientSocket.close();
     }
+
+    public static void findResponse(Socket clientSocket, HashMap<String, String[]> request) throws IOException {
+
+        String outputLine = null;
+        String type = request.get("Accept:")[1];
+        System.out.println("HELLO: "+type);
+        if(type.contains("text/html") || type.contains("text/css")){
+            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
+            outputLine = WebFramework.getResource(request.get("GET")[1], null);
+            out.println(outputLine);
+            out.close();
+        } else {
+            DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
+            File file = new File("src/main/webapp/images/prueba.png");
+            int numOfBytes = (int) file.length();
+
+            FileInputStream inFile  = new FileInputStream ("src/main/webapp/images/prueba.png");
+
+            byte[] fileInBytes = new byte[numOfBytes];
+            inFile.read(fileInBytes);
+            out.writeBytes(JPG_HEADERS);
+            out.write(fileInBytes,0, numOfBytes);
+            out.close();
+            inFile.close();
+        }
+        System.out.println(outputLine);
+
+    }
+
 
     public static void setPort(int p){
         port = p;
