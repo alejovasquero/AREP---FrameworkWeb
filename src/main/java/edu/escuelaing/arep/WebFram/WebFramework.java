@@ -86,6 +86,7 @@ public class WebFramework {
     }
 
 
+
     private static String getPath(String path){
         return homeFolder==null?path: homeFolder + path;
     }
