@@ -6,6 +6,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 
 import static edu.escuelaing.arep.WebFram.WebFramework.*;
 
@@ -30,11 +31,21 @@ public class HttpServer {
                 System.err.println("Accept failed.");
                 System.exit(1);
             }
-            makeResponse(clientSocket);
+            processClient(clientSocket);
         }
         serverSocket.close();
     }
 
+
+    private static void processClient(Socket s){
+        try {
+            makeResponse(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchElementException e){
+
+        }
+    }
     public static void makeResponse(Socket clientSocket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String inputLine;
@@ -53,7 +64,7 @@ public class HttpServer {
         clientSocket.close();
     }
 
-    public static void findResponse(Socket clientSocket, HashMap<String, String[]> request) throws IOException {
+    public static void findResponse(Socket clientSocket, HashMap<String, String[]> request) throws IOException, NoSuchElementException {
 
         String outputLine = null;
 

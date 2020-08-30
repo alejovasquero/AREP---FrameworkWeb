@@ -15,6 +15,7 @@ public class Main {
     public static void main(String[] args){
         WebFramework.setHomeFolder("src/main/webapp");
         HttpServer.setPort(getPort());
+        get("/", (path, params) -> WebFramework.getHTML("/data.html", params));
         get("/data.html", (path, params) -> WebFramework.getHTML(path, params));
         get("/css/style.css", (path, params) -> WebFramework.getCss(path));
         try {
