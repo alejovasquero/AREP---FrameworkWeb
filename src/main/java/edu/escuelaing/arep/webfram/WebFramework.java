@@ -1,12 +1,11 @@
-package edu.escuelaing.arep.WebFram;
+package edu.escuelaing.arep.webfram;
 
-import edu.escuelaing.arep.Handlers.HTMLHandler;
+import edu.escuelaing.arep.handlers.HTMLHandler;
 
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -69,23 +68,6 @@ public class WebFramework {
         HTMLHandler handler = new HTMLHandler(totalPath);
         return CSS_HEADERS + handler.getData();
     }
-
-
-    public static Object[] getFile(String path){
-        try {
-            File myFile = new File(getPath(path));
-            byte[] mybytearray = new byte[(int) myFile.length()];
-            FileInputStream fis = new FileInputStream(myFile);
-            BufferedInputStream bis = new BufferedInputStream(fis);
-            Object[] ans = {mybytearray,0,mybytearray.length};
-            return ans;
-        } catch (IOException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-
 
     private static String getPath(String path){
         return homeFolder==null?path: homeFolder + path;

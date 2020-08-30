@@ -1,14 +1,12 @@
-package edu.escuelaing.arep.HttpServer;
+package edu.escuelaing.arep.httpserver;
 
-import edu.escuelaing.arep.WebFram.WebFramework;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-
-import static edu.escuelaing.arep.WebFram.WebFramework.*;
+import static edu.escuelaing.arep.webfram.WebFramework.*;
 
 public class HttpServer {
     private static boolean runnning = false;
@@ -20,8 +18,8 @@ public class HttpServer {
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
             System.err.println("Could not listen on port: "+ port +".");
-            System.exit(1);
-            }
+            System.exit(0);
+        }
         Socket clientSocket = null;
         runnning = true;
         while(runnning) {
@@ -72,7 +70,7 @@ public class HttpServer {
         System.out.println("HELLO: "+type);
         if(type.contains("text/html") || type.contains("text/css")){
             PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            outputLine = WebFramework.getResource(request.get("GET")[1], null);
+            outputLine = getResource(request.get("GET")[1], null);
             out.println(outputLine);
             out.close();
         } else {

@@ -1,11 +1,12 @@
 package edu.escuelaing.arep.dao.mongodb;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
-import com.mongodb.client.*;
-import edu.escuelaing.arep.Entities.Materia;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
+import edu.escuelaing.arep.entities.Materia;
 import org.bson.Document;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import static com.mongodb.client.model.Projections.excludeId;

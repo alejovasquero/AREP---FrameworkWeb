@@ -1,4 +1,4 @@
-package edu.escuelaing.arep.Handlers;
+package edu.escuelaing.arep.handlers;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,11 +9,11 @@ import java.io.IOException;
  */
 public class HTMLHandler {
     private String data;
-    private String file;
+    private String originFile;
     private boolean opened;
 
     public HTMLHandler(String file){
-        this.file = file;
+        this.originFile = file;
         data = getHTML(file);
     }
 
@@ -22,7 +22,7 @@ public class HTMLHandler {
      * @param file Nuevo nombre del archivo
      */
     public void changeFile(String file){
-        this.file = file;
+        this.originFile = file;
         data = getHTML(file);
     }
 

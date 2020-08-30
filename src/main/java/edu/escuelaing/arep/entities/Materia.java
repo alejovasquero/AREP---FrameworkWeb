@@ -1,4 +1,4 @@
-package edu.escuelaing.arep.Entities;
+package edu.escuelaing.arep.entities;
 
 public class Materia {
 
