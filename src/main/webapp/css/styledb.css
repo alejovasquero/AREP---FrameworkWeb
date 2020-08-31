@@ -1,7 +1,6 @@
 body {
-    background-image:  url('../images/prueba.png');
+    background-image:  url('../images/img-portada.jpeg');
     background-repeat:  repeat-y;
-    background-color:  red;
 }
 
 form {
@@ -21,6 +20,26 @@ form {
 }
 
 textarea {
-    background-color:gray;
-    border: 2px solid #008cba;
+    background-color:  gray;
+    border:  2px solid #008cba;
+}
+
+table, th, td {
+  border:  1px solid black;
+  border-collapse:  collapse;
+  width:  100%;
+  background-color:  #f1f1c1;
+  color:  white;
+}
+th, td {
+  padding:  15px;
+  text-align:  left;
+  color:  black;
+  width:  25%;
+}
+
+.myDiv {
+  border:  px outset red;
+  background:  background: rgba(76, 175, 80, 0.3);
+  text-align:  center;
 }

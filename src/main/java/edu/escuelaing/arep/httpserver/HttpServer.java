@@ -39,10 +39,15 @@ public class HttpServer {
     private static void processClient(Socket s){
         try {
             readRequest(s);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchElementException e){
-
+        } catch (Exception es){
+            PrintWriter e = null;
+            try {
+                e = new PrintWriter(s.getOutputStream());
+            } catch (IOException ioException) {
+                //ioException.printStackTrace();
+            }
+            e.println(NOT_FOUND);
+            e.close();
         }
     }
     public static void readRequest(Socket clientSocket) throws IOException {

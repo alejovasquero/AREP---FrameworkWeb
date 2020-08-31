@@ -31,6 +31,10 @@ public class Headers {
         imageHeaders.put("ico", "HTTP/1.1 200 OK\r\n"
                 + "Content-Type: image/x-icon\r\n"
                 + "\r\n");
+
+        imageHeaders.put("jpeg", "HTTP/1.1 200 OK\r\n"
+                + "Content-Type: image/jpeg\r\n"
+                + "\r\n");
     }
 
     public static String NOT_FOUND = "HTTP/1.1 404 Not Found";
