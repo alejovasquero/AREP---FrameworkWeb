@@ -3,6 +3,9 @@ package edu.escuelaing.arep.services;
 import edu.escuelaing.arep.dao.mongodb.MongoDAO;
 import edu.escuelaing.arep.entities.Materia;
 
+/**
+ * @author Alejandro Vasquez
+ */
 public class MateriasServices {
 
     private MongoDAO mongoDAO;
@@ -11,6 +14,10 @@ public class MateriasServices {
         mongoDAO = new MongoDAO();
     }
 
+    /**
+     * Retorna las materias de la base de datos en un formato de tabla
+     * @return HTML con la informacion de las materias
+     */
     public String getMateriasHTML(){
         try {
             StringBuilder stringBuilder = new StringBuilder();

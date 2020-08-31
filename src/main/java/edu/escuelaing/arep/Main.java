@@ -23,6 +23,9 @@ public class Main {
         }
     }
 
+    /**
+     * Configura todas las rutas a los archivos de texto plano, mapenado con rutas de acceso
+     */
     private static void setFiles(){
         get("/", (path, params) -> getDBData());
         get("/data.html", (path, params) -> getPlain(path, params));
@@ -32,12 +35,19 @@ public class Main {
         get("/js/box.js", (path, params) -> getPlain(path, params));
     }
 
+    /**
+     * Configura todas la imagenes, mapeando con rutas de acceso
+     */
     private static void setImages(){
         getImage("/images/prueba.png", (path) -> getImage(path));
         getImage("/favicon.ico", (path) -> getImage(path));
         getImage("/images/img-portada.jpeg", (path) -> getImage(path));
     }
 
+    /**
+     * Retorna el puerto del ambiente
+     * @return Retorna el puerto configurado en el servidor, si hay un configurado, de lo contrario toma como defecto el 36000
+     */
     public static int getPort(){
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
@@ -45,6 +55,10 @@ public class Main {
         return 36000; //returns default port if heroku-port isn't set (i.e. on localhost)
     }
 
+    /**
+     * Retorna un archivo HTML configurado y mapeado con una ruta fija a un HTML
+     * @return HTML con tablas e informacion de las materias en la base de datos
+     */
     public static String getDBData(){
         String a = getPlain("/database.html", null);
         return a.replace("reemplazo", service.getMateriasHTML());

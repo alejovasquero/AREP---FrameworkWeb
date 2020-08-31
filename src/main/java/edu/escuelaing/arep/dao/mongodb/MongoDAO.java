@@ -15,6 +15,9 @@ import static com.mongodb.client.model.Projections.excludeId;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Alejandro Vasquez
+ */
 public class MongoDAO {
 
     public static final ObjectMapper JSON_MAPPER = new ObjectMapper();
@@ -25,6 +28,7 @@ public class MongoDAO {
     public static MongoDatabase db;
     public static MongoCollection<Document> coll;
 
+
     static {
         uri = new MongoClientURI(
                 "mongodb+srv://arep:AAIKUvaCY0KYPCKe@arep-cluster-server.re6r2.mongodb.net/AREPWEB?retryWrites=true&w=majority");
@@ -32,6 +36,12 @@ public class MongoDAO {
         db = mongoClient.getDatabase("AREPWEB");
     }
 
+
+    /**
+     * Retorna todas las materias que se encuentran en la base de datos
+     * @return Lista de materias de la base de datos
+     * @throws PersistenceException Error con la conexión a la base de datos
+     */
     public List<Materia> getMaterias() throws PersistenceException {
         coll = db.getCollection("materias");
         MongoCursor<Document> cursor = coll.find().projection(excludeId()).iterator();

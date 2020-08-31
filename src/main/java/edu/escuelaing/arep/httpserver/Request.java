@@ -7,6 +7,9 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.Map;
 
+/**
+ * @author Alejandro Vasquez
+ */
 public class Request {
 
     private URL url;
@@ -22,6 +25,10 @@ public class Request {
         processAccepHeaders(map);
     }
 
+    /**
+     * Mapea los posibles formatos de retorno para una respuesta
+     * @param map Mapa con los encabezados de la peticion
+     */
     private void processAccepHeaders(Map<String, String[]> map) {
         if(map.containsKey("Accept:")){
             acceptHeaders = map.get("Accept:")[1].split(";")[0].split("\\,");
@@ -37,6 +44,10 @@ public class Request {
         }
     }
 
+    /**
+     * Mapea el método HTTP usado en la petición
+     * @param map Mapa con los encabezados de la peticion
+     */
     private void processMethod(Map<String, String[]> map) {
         if(map.containsKey("GET")){
             method = map.get("GET")[0];
@@ -45,7 +56,10 @@ public class Request {
         }
     }
 
-
+    /**
+     * Mapea la version de HTTP de la peticion
+     * @param map Mapa con los encabezados de la peticion
+     */
     private void processHttpVersion(Map<String, String[]> map){
         if(map.containsKey("GET")){
             httpVersion = map.get("GET")[2];
@@ -54,6 +68,10 @@ public class Request {
         }
     }
 
+    /**
+     * Mapea la URL de la petición, con el objetivo de consultar los recursos y parámetros
+     * @param map Mapa con los encabezados de la peticion
+     */
     private void processPath(Map<String, String[]> map){
         try {
             if(map.containsKey("GET")){
@@ -67,19 +85,34 @@ public class Request {
         }
     }
 
+    /**
+     * Retorna el recurso que se espeficia en URL de la peticion
+     * @return Ruta del recurso de la petición, sin parametros
+     */
     public String getResource(){
         return url.getPath();
     }
 
+    /**
+     * Indica si la peticion contiene formatos de aceptacion
+     * @return Si en los encabezados habia indicacion ACCEPT
+     */
     public boolean containsAccept(){
         return acceptHeaders != null;
     }
 
-
+    /**
+     * Si el recurso de la peticion es una images
+     * @return Si el recurso especificado es una imagen, se limita a la revision de la clase Header
+     */
     public boolean isImage(){
         return !Headers.headers.containsKey(headerKey) && Headers.imageHeaders.containsKey(headerKey);
     }
 
+    /**
+     * Retorna el formato que se debe especificar en los encabezados de retorno
+     * @return Formato para el retorno. Será comparado con la clase Header
+     */
     public String getResponse(){
         return headerKey;
     }

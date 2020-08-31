@@ -1,5 +1,8 @@
 package edu.escuelaing.arep.entities;
 
+/**
+ * @author Alejandro Vasquez
+ */
 public class Materia {
 
     private String sigla;

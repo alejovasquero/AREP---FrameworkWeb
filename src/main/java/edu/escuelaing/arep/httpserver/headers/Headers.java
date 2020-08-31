@@ -2,6 +2,9 @@ package edu.escuelaing.arep.httpserver.headers;
 
 import java.util.HashMap;
 
+/**
+ * @author Alejandro Vasquez
+ */
 public class Headers {
 
     public static HashMap<String, String> headers = new HashMap<String, String>();

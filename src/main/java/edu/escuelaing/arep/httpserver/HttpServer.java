@@ -9,10 +9,17 @@ import java.util.NoSuchElementException;
 import static edu.escuelaing.arep.webfram.WebFramework.*;
 import static edu.escuelaing.arep.httpserver.headers.Headers.*;
 
+/**
+ * @author Alejandro Vasquez
+ */
 public class HttpServer {
     private static boolean runnning = false;
     private static int port = 35000;
 
+    /**
+     * Arranca el servidor web en el puerto configurado
+     * @throws IOException Excepcion de lectura y escritura sobre archivos
+     */
     public static void start() throws IOException {
         ServerSocket serverSocket = null;
         try {
@@ -35,7 +42,10 @@ public class HttpServer {
         serverSocket.close();
     }
 
-
+    /**
+     * Inicia el proceso de procesamiento de la peticion
+     * @param s Socket del cliente
+     */
     private static void processClient(Socket s){
         try {
             readRequest(s);
@@ -50,6 +60,12 @@ public class HttpServer {
             e.close();
         }
     }
+
+    /**
+     * Lee las lineas de la peticion y las mapea
+     * @param clientSocket Conexion del cliente
+     * @throws IOException Excepcion de lectura y escritura de archivos
+     */
     public static void readRequest(Socket clientSocket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String inputLine;
@@ -79,6 +95,13 @@ public class HttpServer {
         clientSocket.close();
     }
 
+    /**
+     * Configura encapsulamiento de la respuesta con sus respectivos encabezados
+     * @param clientSocket Conexion del cliente
+     * @param request Peticion con los datos mapeados
+     * @throws IOException Error buscando y escribiendo en archivos mapeados
+     * @throws NoSuchElementException Los archivos configurados con el framework web no existen
+     */
     public static void findResponse(Socket clientSocket, Request request) throws IOException, NoSuchElementException {
         DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
         if(!request.isImage()){
@@ -91,7 +114,6 @@ public class HttpServer {
         }
         out.close();
     }
-
 
     public static void setPort(int p){
         port = p;
