@@ -12,7 +12,7 @@ public class HTMLHandler {
     private String originFile;
     private boolean opened;
 
-    public HTMLHandler(String file){
+    public HTMLHandler(String file) throws IOException {
         this.originFile = file;
         data = getHTML(file);
     }
@@ -21,7 +21,7 @@ public class HTMLHandler {
      * Cambia el archivo especificado
      * @param file Nuevo nombre del archivo
      */
-    public void changeFile(String file){
+    public void changeFile(String file) throws IOException {
         this.originFile = file;
         data = getHTML(file);
     }
@@ -53,7 +53,7 @@ public class HTMLHandler {
      * @param file Archivo donde buscar
      * @return Texto almacenado en el archivo
      */
-    private String getHTML(String file){
+    private String getHTML(String file) throws IOException {
         StringBuilder contentBuilder = new StringBuilder();
         try {
             BufferedReader in = new BufferedReader(new FileReader(file));
@@ -63,7 +63,7 @@ public class HTMLHandler {
             }
             in.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw e;
         }
         String content = contentBuilder.toString();
         opened = true;

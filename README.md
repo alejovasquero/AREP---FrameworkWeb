@@ -8,7 +8,7 @@ El cálculo es presentado en una página web apoyada sobre el framework spark.
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/c16d3bb3c8784784ae0c3f10ff88bf78)](https://www.codacy.com/manual/alejovasquero/AREP---FrameworkWeb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alejovasquero/AREP---FrameworkWeb&amp;utm_campaign=Badge_Grade)
 [![CircleCI](https://circleci.com/gh/alejovasquero/AREP---FrameworkWeb.svg?style=svg)](https://circleci.com/gh/alejovasquero/AREP---FrameworkWeb)
 
-[Despliegue en heroku](https://lab-reflexion.herokuapp.com/)
+[Despliegue en heroku](https://frameworkweb.herokuapp.com/)
 
 ## Empezando
 

@@ -7,6 +7,7 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 import static edu.escuelaing.arep.webfram.WebFramework.*;
+import static edu.escuelaing.arep.httpserver.headers.Headers.*;
 
 public class HttpServer {
     private static boolean runnning = false;
@@ -37,14 +38,14 @@ public class HttpServer {
 
     private static void processClient(Socket s){
         try {
-            makeResponse(s);
+            readRequest(s);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NoSuchElementException e){
 
         }
     }
-    public static void makeResponse(Socket clientSocket) throws IOException {
+    public static void readRequest(Socket clientSocket) throws IOException {
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         String inputLine;
         String[] argu = null;
@@ -57,38 +58,31 @@ public class HttpServer {
                 break;
             }
         }
-        findResponse(clientSocket, a);
+        Request r = new Request(a);
+        if(isSupported(r)){
+            if(r.containsAccept()){
+                findResponse(clientSocket, r);
+            }
+        } else {
+            PrintWriter e = new PrintWriter(clientSocket.getOutputStream());
+            e.println(NOT_FOUND);
+            e.close();
+        }
         in.close();
         clientSocket.close();
     }
 
-    public static void findResponse(Socket clientSocket, HashMap<String, String[]> request) throws IOException, NoSuchElementException {
-
-        String outputLine = null;
-
-        String type = request.get("Accept:")[1];
-        System.out.println("HELLO: "+type);
-        if(type.contains("text/html") || type.contains("text/css")){
-            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-            outputLine = getResource(request.get("GET")[1], null);
-            out.println(outputLine);
-            out.close();
+    public static void findResponse(Socket clientSocket, Request request) throws IOException, NoSuchElementException {
+        DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
+        if(!request.isImage()){
+            out.writeBytes(headers.get(request.getResponse()));
+            out.writeBytes(getResource(request.getResource(), null));
         } else {
-            DataOutputStream out = new DataOutputStream(clientSocket.getOutputStream());
-            File file = new File("src/main/webapp/images/prueba.png");
-            int numOfBytes = (int) file.length();
-
-            FileInputStream inFile  = new FileInputStream ("src/main/webapp/images/prueba.png");
-
-            byte[] fileInBytes = new byte[numOfBytes];
-            inFile.read(fileInBytes);
-            out.writeBytes(JPG_HEADERS);
-            out.write(fileInBytes,0, numOfBytes);
-            out.close();
-            inFile.close();
+            out.writeBytes(imageHeaders.get(request.getResponse()));
+            byte[] image = getImageResource(request.getResource());
+            out.write(image,0, image.length);
         }
-        System.out.println(outputLine);
-
+        out.close();
     }
 
 
