@@ -57,8 +57,8 @@ public class Request {
     private void processPath(Map<String, String[]> map){
         try {
             if(map.containsKey("GET")){
-                System.out.println(Arrays.toString(map.get("GET")));
-                url = new URL("http://localhost"+map.get("GET")[1]);
+                String path = map.get("GET")[1];
+                url = new URL("http://localhost"+ (path == null? "": path));
             } else {
                 url = new URL("");
             }
