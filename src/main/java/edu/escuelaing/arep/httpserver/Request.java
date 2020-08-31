@@ -4,6 +4,7 @@ import edu.escuelaing.arep.httpserver.headers.Headers;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Map;
 
 public class Request {
@@ -56,6 +57,7 @@ public class Request {
     private void processPath(Map<String, String[]> map){
         try {
             if(map.containsKey("GET")){
+                System.out.println(Arrays.toString(map.get("GET")));
                 url = new URL("http://localhost"+map.get("GET")[1]);
             } else {
                 url = new URL("");
