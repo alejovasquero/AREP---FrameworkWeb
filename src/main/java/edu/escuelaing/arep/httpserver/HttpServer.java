@@ -58,15 +58,17 @@ public class HttpServer {
                 break;
             }
         }
-        Request r = new Request(a);
-        if(isSupported(r)){
-            if(r.containsAccept()){
-                findResponse(clientSocket, r);
+        if (a.containsKey("Accept:")) {
+            Request r = new Request(a);
+            if (isSupported(r)) {
+                if (r.containsAccept()) {
+                    findResponse(clientSocket, r);
+                }
+            } else {
+                PrintWriter e = new PrintWriter(clientSocket.getOutputStream());
+                e.println(NOT_FOUND);
+                e.close();
             }
-        } else {
-            PrintWriter e = new PrintWriter(clientSocket.getOutputStream());
-            e.println(NOT_FOUND);
-            e.close();
         }
         in.close();
         clientSocket.close();
