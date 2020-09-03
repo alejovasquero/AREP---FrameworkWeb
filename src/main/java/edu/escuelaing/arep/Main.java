@@ -2,9 +2,10 @@ package edu.escuelaing.arep;
 
 import edu.escuelaing.arep.httpserver.HttpServer;
 import edu.escuelaing.arep.services.MateriasServices;
-
-import static edu.escuelaing.arep.webfram.WebFramework.*;
-
+import static edu.escuelaing.arep.webfram.WebFramework.setHomeFolder;
+import static edu.escuelaing.arep.webfram.WebFramework.get;
+import static edu.escuelaing.arep.webfram.WebFramework.getPlain;
+import static edu.escuelaing.arep.webfram.WebFramework.getImage;
 import java.io.IOException;
 
 public class Main {

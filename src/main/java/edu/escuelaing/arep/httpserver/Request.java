@@ -1,10 +1,8 @@
 package edu.escuelaing.arep.httpserver;
 
 import edu.escuelaing.arep.httpserver.headers.Headers;
-
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.Map;
 
 /**
@@ -13,8 +11,8 @@ import java.util.Map;
 public class Request {
 
     private URL url;
-    private String httpVersion;
-    private String method;
+    private String htVersion;
+    private String htMethod;
     private String[] acceptHeaders;
     private String headerKey;
 
@@ -50,9 +48,9 @@ public class Request {
      */
     private void processMethod(Map<String, String[]> map) {
         if(map.containsKey("GET")){
-            method = map.get("GET")[0];
+            htMethod = map.get("GET")[0];
         } else {
-            method = null;
+            htMethod = null;
         }
     }
 
@@ -62,9 +60,9 @@ public class Request {
      */
     private void processHttpVersion(Map<String, String[]> map){
         if(map.containsKey("GET")){
-            httpVersion = map.get("GET")[2];
+            htVersion = map.get("GET")[2];
         } else {
-            httpVersion = null;
+            htVersion = null;
         }
     }
 

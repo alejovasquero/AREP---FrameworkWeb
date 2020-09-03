@@ -6,8 +6,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
-import static edu.escuelaing.arep.webfram.WebFramework.*;
-import static edu.escuelaing.arep.httpserver.headers.Headers.*;
+import static edu.escuelaing.arep.webfram.WebFramework.isSupported;
+import static edu.escuelaing.arep.webfram.WebFramework.getResource;
+import static edu.escuelaing.arep.webfram.WebFramework.getImageResource;
+import static edu.escuelaing.arep.httpserver.headers.Headers.NOT_FOUND;
+import static edu.escuelaing.arep.httpserver.headers.Headers.headers;
+import static edu.escuelaing.arep.httpserver.headers.Headers.imageHeaders;
 
 /**
  * @author Alejandro Vasquez
@@ -26,7 +30,6 @@ public class HttpServer {
             serverSocket = new ServerSocket(port);
         } catch (IOException e) {
             System.err.println("Could not listen on port: "+ port +".");
-            System.exit(0);
         }
         Socket clientSocket = null;
         runnning = true;
@@ -35,7 +38,6 @@ public class HttpServer {
                 clientSocket = serverSocket.accept();
             } catch (IOException e) {
                 System.err.println("Accept failed.");
-                System.exit(1);
             }
             processClient(clientSocket);
         }

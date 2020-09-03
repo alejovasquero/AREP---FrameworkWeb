@@ -1,8 +1,8 @@
 package edu.escuelaing.arep;
 
+import org.junit.Test;
 import static org.junit.Assert.assertTrue;
 
-import org.junit.Test;
 
 /**
  * Unit test for simple App.
@@ -15,6 +15,6 @@ public class AppTest
     @Test
     public void shouldAnswerWithTrue()
     {
-        //TODO
+        assertTrue(1==2);
     }
 }

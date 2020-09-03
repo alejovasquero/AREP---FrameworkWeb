@@ -2,8 +2,11 @@ package edu.escuelaing.arep.webfram;
 
 import edu.escuelaing.arep.handlers.HTMLHandler;
 import edu.escuelaing.arep.httpserver.Request;
-import static edu.escuelaing.arep.httpserver.headers.Headers.*;
-import java.io.*;
+import static edu.escuelaing.arep.httpserver.headers.Headers.imageHeaders;
+import static edu.escuelaing.arep.httpserver.headers.Headers.headers;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;

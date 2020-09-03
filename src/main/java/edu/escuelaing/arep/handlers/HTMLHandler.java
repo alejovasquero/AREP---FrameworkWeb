@@ -9,11 +9,11 @@ import java.io.IOException;
  */
 public class HTMLHandler {
     private String data;
-    private String originFile;
+    private String pointerFile;
     private boolean opened;
 
     public HTMLHandler(String file) throws IOException {
-        this.originFile = file;
+        this.pointerFile = file;
         data = getHTML(file);
     }
 
@@ -22,7 +22,7 @@ public class HTMLHandler {
      * @param file Nuevo nombre del archivo
      */
     public void changeFile(String file) throws IOException {
-        this.originFile = file;
+        this.pointerFile = file;
         data = getHTML(file);
     }
 
