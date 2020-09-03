@@ -1,4 +1,4 @@
-# Implementación de servidor http con conexión a mongoDB
+# Implementación de servidor http con conexión a mongoDB.
 
 Este proyecto contiene la implementación de un servidor http en java por medio de sockets.
 Para probar este servidor se realizó la conexión con una base de datos noSQL mongodb.
