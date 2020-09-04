@@ -122,7 +122,7 @@ public class WebFramework {
      * @param path Ruta dada
      * @return Ruta comleta del archivo
      */
-    private static String getPath(String path){
+    public static String getPath(String path){
         return homeFolder==null?path: homeFolder + path;
     }
 

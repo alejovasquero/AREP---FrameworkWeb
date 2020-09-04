@@ -69,6 +69,13 @@ Una vez en el servidor vamos a poder ver una tabla con los elementos de la base 
 
 ![](img/pagina.PNG)
 
+Otros recursos:
+
++ [/data.html](https://frameworkweb.herokuapp.com/data.html)
++ [/css/style.css](https://frameworkweb.herokuapp.com/css/style.css)
++ [/css/styledb.css](https://frameworkweb.herokuapp.com/css/styledb.css)
++ [/results](https://frameworkweb.herokuapp.com/results)
++ [/js/box.js](https://frameworkweb.herokuapp.com/js/box.js)
 
 
 ## Corriendo las pruebas
@@ -79,6 +86,27 @@ y lo haremos por medio de una fase de maven, la fase **test**, del ciclo de vida
 ```console
 mvn test
 ```
+![](img/test.PNG)
+
+## Especificación pruebas
+
+##### HTMLHandlerTest
++ openTest - Revisa que sea exitoso el constenido de un archivo plano 
++ replaceTest - Revisa que se pueda sustituir el contenido de un archivo plano en memoria
+
+
+##### RequestTest
++ resourceTest - Revisa que el recurso de la solicitud sea el correcto 
++ shouldBeImage - Revisa que el recurso de la solicitud sea una imagen
++ shouldNotBeImage - Revisa que el recurso de la solicitud NO sea una imagen
++ shouldGetHeaderKey - Revisa que el header de respuesta sea el correcto
+
+
+##### WebFrameworkTest
++ testTotalPath - Revisa que el path home sea correcto para distintos recursos 
++ shouldNotSupportFormat - Revisa que el formato de una request NO sea soportado
++ shouldSupportFormat - Revisa que el formato de una request sea soportado
++ shouldExistResource - Revisa que el recurso haya sido exitosamente mapeado
 
 ![](resources/AllTest.PNG)
 

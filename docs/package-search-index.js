@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"edu.escuelaing.arep"},{"l":"edu.escuelaing.arep.dao.mongodb"},{"l":"edu.escuelaing.arep.entities"},{"l":"edu.escuelaing.arep.handlers"},{"l":"edu.escuelaing.arep.httpserver"},{"l":"edu.escuelaing.arep.httpserver.headers"},{"l":"edu.escuelaing.arep.services"},{"l":"edu.escuelaing.arep.services.exceptions"},{"l":"edu.escuelaing.arep.webfram"}]
