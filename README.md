@@ -5,6 +5,7 @@ Para probar este servidor se realizó la conexión con una base de datos noSQL m
 
 ## Estado
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/200c72b5e0e44c29834c5aa0800b8adf)](https://app.codacy.com/manual/alejovasquero/AREP---FrameworkWeb?utm_source=github.com&utm_medium=referral&utm_content=alejovasquero/AREP---FrameworkWeb&utm_campaign=Badge_Grade_Settings)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/9d7f1cf83183406a977f6e0a3cbf0a2c)](https://www.codacy.com/manual/alejovasquero/AREP---FrameworkWeb?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alejovasquero/AREP---FrameworkWeb&amp;utm_campaign=Badge_Grade)
 [![CircleCI](https://circleci.com/gh/alejovasquero/AREP---FrameworkWeb.svg?style=svg)](https://circleci.com/gh/alejovasquero/AREP---FrameworkWeb)
 
